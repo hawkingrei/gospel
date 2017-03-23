@@ -512,13 +512,13 @@ func handleRequest(dht *DHT, addr *net.UDPAddr,
 			return
 		}
 		/*
-		if dht.IsCrawlMode() {
-			send(dht, addr, makeResponse(t, map[string]interface{}{
-				"id":    dht.id(infoHash),
-				"token": dht.tokenManager.token(addr),
-				"nodes": "",
-			}))
-		} else */
+			if dht.IsCrawlMode() {
+				send(dht, addr, makeResponse(t, map[string]interface{}{
+					"id":    dht.id(infoHash),
+					"token": dht.tokenManager.token(addr),
+					"nodes": "",
+				}))
+			} else */
 		if peers := dht.peersManager.GetPeers(
 			infoHash, dht.K); len(peers) > 0 {
 
@@ -569,13 +569,11 @@ func handleRequest(dht *DHT, addr *net.UDPAddr,
 			port = addr.Port
 		}
 
-		
 		dht.peersManager.Insert(infoHash, newPeer(addr.IP, port, token))
 
 		send(dht, addr, makeResponse(t, map[string]interface{}{
 			"id": dht.id(id),
 		}))
-		
 
 		if dht.OnAnnouncePeer != nil {
 			dht.OnAnnouncePeer(infoHash, addr.IP.String(), port)
