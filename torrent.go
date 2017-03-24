@@ -1,5 +1,5 @@
 package main
-
+/*
 import (
 	"crypto/md5"
 	"fmt"
@@ -12,7 +12,6 @@ type chunklist struct {
 	adler uint32
 	md5   [16]byte
 }
-
 func main() {
 	var finalresult []chunklist
 	fileToBeChunked := "./mandala/mandala.war"
@@ -41,3 +40,4 @@ func main() {
 	}
 	fmt.Println(finalresult[324])
 }
+*/
