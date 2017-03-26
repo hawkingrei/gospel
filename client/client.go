@@ -1,43 +1,28 @@
-package client
+package main
 
 import (
-	"crypto"
-	"crypto/rand"
-	"encoding/binary"
-	"encoding/hex"
-	"errors"
 	"fmt"
-	"io"
-	"log"
-	"net"
+	"crypto/sha1"
 	"os"
-	"sync"
-	"time"
-
-	"github.com/anacrolix/missinggo"
-	"github.com/anacrolix/torrent/bencode"
-	"github.com/anacrolix/torrent/iplist"
-	"github.com/anacrolix/torrent/logonce"
-	"github.com/anacrolix/torrent/metainfo"
-	"github.com/tylertreat/BoomFilters"
-
-	"github.com/hawkingrei/gospel/dht/krpc"
+	"net"
 )
 
-
-type Server struct {
-	id               string
-	socket           net.PacketConn
-	transactions     map[transactionKey]*Transaction
-	transactionIDInt uint64
-	nodes            map[string]*node // Keyed by dHTAddr.String().
-	mu               sync.Mutex
-	closed           missinggo.Event
-	ipBlockList      iplist.Ranger
-	badNodes         *boom.BloomFilter
-	tokenServer      tokenServer
-
-	numConfirmedAnnounces int
-	bootstrapNodes        []string
-	config                ServerConfig
+func main(){
+	var id [20]byte
+        h := sha1.New()
+	ss := "wasdfadsf"
+        h.Write([]byte(ss))
+	h.Sum(id[:0:20])
+	fmt.Println(id)
+	addr, err := net.ResolveUDPAddr("udp","router.bittorrent.com:6881")
+	if err != nil {
+		fmt.Println("Can't resolve address: ", err)
+		os.Exit(1)
+	}
+	conn, err := net.DialUDP("udp", nil, addr)
+	if err != nil {
+		fmt.Println("Can't dial: ", err)
+		os.Exit(1)
+	}
+	defer conn.Close()
 }
