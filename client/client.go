@@ -48,7 +48,7 @@ func main(){
 	conn.Read(buffer)
 	fmt.Printf("%q\n", string(buffer[:]))
 	fmt.Println("===================================")
-	var torrent interface{}
+	var torrent map[interface{}]
 	err = bencode.DecodeBytes(buffer,&torrent)
 	if err != nil {
                 fmt.Println("failed:", err)
