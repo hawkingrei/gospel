@@ -2,14 +2,30 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"net"
+	/*
 	"crypto/sha1"
 	"os"
 	"net"
 	"github.com/zeebo/bencode"
-
+	*/
 )
 
 func main(){
+	id := new([20]byte);
+	rand.Read(id[:])
+	fmt.println(id)
+	var routers = []string{
+		"router.magnets.im:6881",
+		"router.bittorrent.com:6881",
+		"dht.transmissionbt.com:6881",
+		"router.utorrent.com:6881",
+	}
+	for _, addr := range routers {
+		addr, err := net.ResolveUDPAddr("udp", addr)
+	}
+	/*
 	var id [20]byte
  	h := sha1.New()
 	ss, err := os.Hostname()
@@ -55,4 +71,5 @@ func main(){
 
         }
 	fmt.Println(torrent)
+	*/
 }
