@@ -15,7 +15,7 @@ import (
 func main(){
 	id := new([20]byte);
 	rand.Read(id[:])
-	fmt.println(id)
+	fmt.Println(id)
 	var routers = []string{
 		"router.magnets.im:6881",
 		"router.bittorrent.com:6881",
