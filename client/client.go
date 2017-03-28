@@ -46,7 +46,7 @@ func main(){
 	fmt.Println("ok")
 	buffer := make([]byte, 10240)
 	conn.Read(buffer)
-	fmt.Printf("%x\n", string(buffer[:]))
+	fmt.Printf("%q\n", string(buffer[:]))
 	fmt.Println("===================================")
 	var torrent interface{}
 	err = bencode.DecodeBytes(buffer,&torrent)
